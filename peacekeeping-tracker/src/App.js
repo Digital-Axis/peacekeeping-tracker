@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import OfficerForm from './components/OfficerForm';
+import OfficerList from './components/OfficerList';
 
-function App() {
+const App = () => {
+  const [officers, setOfficers] = useState([]);
+
+  // Function to add a new officer to the list
+  const addOfficer = (newOfficer) => {
+    setOfficers([...officers, newOfficer]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="mt-4 mb-4">UN Peacekeeping Mission Tracker</h1>
+      <OfficerForm addOfficer={addOfficer} />
+      <OfficerList officers={officers} />
     </div>
   );
-}
+};
 
 export default App;
+
